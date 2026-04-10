@@ -1,5 +1,6 @@
 from validator import is_valid_move
 
+
 def empty_cell(board):
     for row in range(9):
         for col in range(9):
