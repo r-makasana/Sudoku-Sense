@@ -1,0 +1,568 @@
+/* ─── Theme Variables ─────────────────────────────────────────── */
+:root {
+  --bg-page: #080d1a;
+  --bg-panel: rgba(255, 255, 255, 0.04);
+  --bg-card: rgba(255, 255, 255, 0.07);
+  --bg-cell: rgba(255, 255, 255, 0.03);
+  --bg-cell-hover: rgba(100, 145, 255, 0.12);
+  --bg-cell-selected: rgba(100, 145, 255, 0.22);
+  --bg-cell-related: rgba(100, 145, 255, 0.06);
+  --bg-cell-same: rgba(100, 145, 255, 0.13);
+  --bg-numpad: rgba(255, 255, 255, 0.06);
+  --bg-numpad-hover: rgba(255, 255, 255, 0.14);
+
+  --color-given: #d4a843;
+  --color-user: #8ab4f8;
+  --color-error: #e85c5c;
+  --color-hint: #6fcf97;
+
+  --border-thin: rgba(255, 255, 255, 0.1);
+  --border-box: rgba(255, 255, 255, 0.38);
+  --border-outer: rgba(255, 255, 255, 0.55);
+
+  --text-primary: rgba(255, 255, 255, 0.92);
+  --text-secondary: rgba(255, 255, 255, 0.5);
+  --text-muted: rgba(255, 255, 255, 0.28);
+
+  --accent: #4f7ef7;
+  --accent-hover: #6b94ff;
+
+  --star-opacity: 1;
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --shadow-btn: 0 4px 16px rgba(79, 126, 247, 0.35);
+}
+
+[data-theme="light"] {
+  --bg-page: #eef2ff;
+  --bg-panel: rgba(255, 255, 255, 0.7);
+  --bg-card: rgba(255, 255, 255, 0.85);
+  --bg-cell: rgba(255, 255, 255, 0.95);
+  --bg-cell-hover: rgba(79, 126, 247, 0.07);
+  --bg-cell-selected: rgba(79, 126, 247, 0.18);
+  --bg-cell-related: rgba(79, 126, 247, 0.04);
+  --bg-cell-same: rgba(79, 126, 247, 0.1);
+  --bg-numpad: rgba(255, 255, 255, 0.8);
+  --bg-numpad-hover: rgba(79, 126, 247, 0.1);
+
+  --color-given: #a8720e;
+  --color-user: #1a4dbf;
+  --color-error: #c0392b;
+  --color-hint: #1e8449;
+
+  --border-thin: rgba(0, 0, 0, 0.1);
+  --border-box: rgba(0, 0, 0, 0.32);
+  --border-outer: rgba(0, 0, 0, 0.55);
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+
+  --star-opacity: 0;
+  --shadow-card: 0 4px 20px rgba(37, 99, 235, 0.1);
+  --shadow-btn: 0 4px 16px rgba(37, 99, 235, 0.25);
+}
+
+/* ─── Reset & Full-Screen Base ────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ─── Stars Background ────────────────────────────────────────── */
+.stars-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--star-opacity);
+  transition: opacity 0.4s ease;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 15% 50%, rgba(20, 40, 120, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 15%, rgba(60, 20, 100, 0.28) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 90%, rgba(10, 30, 80, 0.2) 0%, transparent 50%);
+}
+
+.stars-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 7%  11%, rgba(255,255,255,0.75) 0%, transparent 100%),
+    radial-gradient(1px 1px at 21% 37%, rgba(255,255,255,0.5)  0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 38%  7%, rgba(255,255,255,0.85) 0%, transparent 100%),
+    radial-gradient(1px 1px at 54% 60%, rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 69% 24%, rgba(255,255,255,0.6)  0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 83% 74%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 13% 79%, rgba(255,255,255,0.55) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92%  7%, rgba(255,255,255,0.65) 0%, transparent 100%),
+    radial-gradient(1px 1px at 58% 89%, rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 34% 63%, rgba(255,255,255,0.5)  0%, transparent 100%),
+    radial-gradient(1px 1px at  3% 46%, rgba(255,255,255,0.65) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 94%, rgba(255,255,255,0.5)  0%, transparent 100%),
+    radial-gradient(1px 1px at 47% 27%, rgba(255,255,255,0.75) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 41%, rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 19% 95%, rgba(255,255,255,0.55) 0%, transparent 100%),
+    radial-gradient(1px 1px at 63%  4%, rgba(255,255,255,0.6)  0%, transparent 100%),
+    radial-gradient(1px 1px at 28% 17%, rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 78% 54%, rgba(255,255,255,0.55) 0%, transparent 100%);
+}
+
+/* ─── App Shell ───────────────────────────────────────────────── */
+.app {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px 32px;
+}
+
+/* ─── Header ─────────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  margin-bottom: 14px;
+}
+
+.header-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.score-display {
+  font-size: 20px;
+  font-weight: 700;
+  min-width: 28px;
+  text-align: right;
+}
+
+.theme-label { font-size: 16px; line-height: 1; }
+
+.theme-toggle {
+  width: 48px;
+  height: 26px;
+  border-radius: 13px;
+  border: 1.5px solid var(--border-box);
+  background: var(--bg-card);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.3s ease;
+}
+
+[data-theme="light"] .theme-toggle::after {
+  transform: translateX(22px);
+}
+
+/* ─── Difficulty Bar ──────────────────────────────────────────── */
+.difficulty-bar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.diff-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-right: 6px;
+  font-weight: 500;
+}
+
+.diff-btn {
+  background: transparent;
+  border: none;
+  padding: 5px 13px;
+  border-radius: 20px;
+  font-size: 14px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s;
+  font-weight: 400;
+}
+
+.diff-btn:hover { color: var(--text-primary); }
+
+.diff-btn.active {
+  color: var(--accent);
+  font-weight: 700;
+  position: relative;
+}
+
+.diff-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 2.5px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+/* ─── Main Two-Column Grid ────────────────────────────────────── */
+.main-content {
+  flex: 1;            /* take remaining vertical space */
+  display: grid;
+  /* Grid column: takes all free horizontal space.
+     Side panel: fixed 220px — no more, no less. */
+  grid-template-columns: 1fr 220px;
+  gap: 20px;
+  align-items: start;
+  min-height: 0;
+}
+
+/* ─── Grid Wrapper ────────────────────────────────────────────── */
+.grid-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/*
+ * grid-container sizes itself:
+ *   - width = 100% of the 1fr column
+ *   - but capped so it never exceeds the viewport height (minus header ~120px)
+ * The aspect-ratio on .grid makes the inner grid square automatically.
+ */
+.grid-container {
+  width: min(100%, calc(100vh - 160px));
+  aspect-ratio: 1 / 1;
+  background: var(--bg-panel);
+  border-radius: 12px;
+  padding: 4px;
+  border: 2.5px solid var(--border-outer);
+  box-shadow: var(--shadow-card);
+}
+
+/* ─── The 9×9 Grid ────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  grid-template-rows: repeat(9, minmax(0, 1fr));
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+/* ─── Individual Cells ────────────────────────────────────────── */
+.cell {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(10px, 2vw, 24px);
+  font-weight: 500;
+  cursor: pointer;
+  background: var(--bg-cell);
+  border: 0.5px solid var(--border-thin);
+  transition: background 0.12s ease;
+  user-select: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.cell:hover:not(.cell-given) { background: var(--bg-cell-hover); }
+.cell.cell-selected          { background: var(--bg-cell-selected) !important; }
+.cell.cell-related           { background: var(--bg-cell-related); }
+.cell.cell-same-num          { background: var(--bg-cell-same); }
+
+.cell-given { color: var(--color-given); }
+.cell-user  { color: var(--color-user); }
+.cell-error { color: var(--color-error) !important; }
+.cell-hint  { color: var(--color-hint) !important; }
+
+/* 3×3 box thick borders */
+.cell[data-col="2"],
+.cell[data-col="5"] { border-right:  2px solid var(--border-box); }
+.cell[data-row="2"],
+.cell[data-row="5"] { border-bottom: 2px solid var(--border-box); }
+
+/* ─── Side Panel ─────────────────────────────────────────────── */
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Stats */
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-panel);
+  border-radius: 12px;
+  padding: 12px 16px;
+  border: 0.5px solid var(--border-thin);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.stat-value { font-size: 15px; font-weight: 600; }
+
+.mistakes-dots { display: flex; gap: 5px; }
+
+.mistake-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1.5px solid var(--text-muted);
+  transition: all 0.3s;
+}
+
+.mistake-dot.filled {
+  background: var(--color-error);
+  border-color: var(--color-error);
+}
+
+/* Tools */
+.tool-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--bg-panel);
+  border-radius: 12px;
+  padding: 10px 6px;
+  border: 0.5px solid var(--border-thin);
+}
+
+.tool-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: background 0.15s;
+  position: relative;
+  min-width: 40px;
+}
+
+.tool-btn:hover       { background: var(--bg-card); }
+.tool-btn.active-tool { background: var(--bg-cell-selected); }
+
+.tool-icon  { font-size: 18px; line-height: 1; }
+
+.tool-label {
+  font-size: 9px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.hint-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Number pad */
+.numpad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.num-btn {
+  height: 54px;
+  background: var(--bg-numpad);
+  border: 0.5px solid var(--border-thin);
+  border-radius: 10px;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.num-btn:hover  { background: var(--bg-numpad-hover); }
+.num-btn:active { transform: scale(0.95); }
+
+/* New game button */
+.new-game-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-btn);
+}
+
+.new-game-btn:hover  { background: var(--accent-hover); transform: translateY(-1px); }
+.new-game-btn:active { transform: scale(0.98); }
+
+
+/* Loading */
+.loading-overlay {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid var(--border-thin);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Solved modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  background: var(--bg-page);
+  border: 1px solid var(--border-box);
+  border-radius: 20px;
+  padding: 36px 40px;
+  text-align: center;
+  max-width: 360px;
+  width: 90%;
+  box-shadow: var(--shadow-card);
+}
+
+.modal h2 { font-size: 28px; margin-bottom: 12px; }
+.modal p  { color: var(--text-secondary); margin-bottom: 24px; font-size: 15px; }
+
+/* ─── Pencil/Notes ─────────────────────────────────────────── */
+.notes-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+  padding: 2px;
+}
+
+.note-item {
+  font-size: clamp(6px, 0.75vw, 11px);
+  color: var(--text-secondary);
+  line-height: 1;
+}
+/* ─── Responsive Breakpoints ──────────────────────────────────── */
+
+/* Stack grid above side-panel on narrower screens */
+@media (max-width: 680px) {
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-container {
+    max-width: min(96vw, calc(100vh - 200px));
+    margin: 0 auto;
+  }
+
+  .grid-wrapper {
+    justify-content: center;
+  }
+
+  .side-panel {
+    max-width: 420px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .cell {
+    font-size: clamp(14px, 5vw, 22px);
+  }
+}
+
+@media (max-width: 420px) {
+  .app              { padding: 12px 10px 20px; }
+  .header-title     { font-size: 18px; }
+  .diff-btn         { padding: 4px 8px; font-size: 12px; }
+  .num-btn          { height: 44px; font-size: 18px; }
+  .new-game-btn     { font-size: 14px; padding: 12px; }
+}
